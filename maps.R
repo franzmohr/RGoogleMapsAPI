@@ -1,4 +1,5 @@
 maps<-function(object,mode="driving"){
+  library(rjson)
   n<-nrow(object)
   dist<-c()
   dur<-c()
