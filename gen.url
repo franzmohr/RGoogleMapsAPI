@@ -1,0 +1,16 @@
+gen.url <- function(object,mode,arrival,auth,region){
+  goog <- "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" # Basic
+  from <- paste(object[,1],collapse="|") # Departures
+  to <- paste(object[,2],collapse="|") # Destinations
+  mod<-paste("&mode=",mode,sep="") # Travel mode
+  arriv<-paste("&arrival_time=",arrival,sep="") # Arrival time important for public transport
+  aut<-paste("&key=",auth,sep="") # Authentication key
+  reg<-paste("&region=",region,sep="") # Region
+  
+  u <- paste(goog,from,"&destinations=",to,sep="") # Combine to single URL
+  if(mode=="transit") u<-paste(u,mod,arriv,sep="") # Add transit mode to URL
+  if(!is.null(region)) u<-paste(u,reg,sep="") # Add region to URl (if specified)
+  if(!is.null(auth)) u<-paste(u,aut,sep="") # Add API key
+  u <- gsub(" ","%20",u) # Replace spaces in the URL by %20
+  return(u)
+}
