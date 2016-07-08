@@ -1,3 +1,4 @@
+# Franz X. Mohr 2016
 maps<-function(object,mode="driving",arrival="21600",auth=NULL,region=NULL){
 n.dirs <- NROW(object) # Total number of directions in the query
 data <- matrix(NA,n.dirs,2) # Matrix for results
